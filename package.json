@@ -1,0 +1,29 @@
+{
+  "name": "workflowtree",
+  "version": "1.0.0",
+  "description": "Workflow tree",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvanschepdael/WorkflowTree.git"
+  },
+  "keywords": [
+    "workflow",
+    "tree"
+  ],
+  "author": "dvanschepdael",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dvanschepdael/WorkflowTree/issues"
+  },
+  "homepage": "https://github.com/dvanschepdael/WorkflowTree#readme",
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
