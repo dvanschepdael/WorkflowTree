@@ -8,5 +8,5 @@ export declare class Workflow {
     get currentNode(): Node | null;
     get stack(): Array<any>;
     previous(): Node | null;
-    next(args?: any): Node | null;
+    next(param?: any): Node | null;
 }
