@@ -1,5 +1,7 @@
 # WorkflowTree
 
+Browse a decision tree as a step-by-step workflow.
+
 Usage
 -----
 
