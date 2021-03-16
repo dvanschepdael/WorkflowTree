@@ -13,6 +13,9 @@ var Tree = /** @class */ (function () {
         configurable: true
     });
     Tree.prototype.searchChildren = function (node, key) {
+        if (node.children == null) {
+            return null;
+        }
         for (var _i = 0, _a = node.children; _i < _a.length; _i++) {
             var child = _a[_i];
             if (child.key === key) {
@@ -30,7 +33,7 @@ var Tree = /** @class */ (function () {
     };
     Tree.prototype.remove = function (node) {
         if (node.parent) {
-            var idx = node.parent.children.findIndex(function (n) { return n === node; });
+            var idx = node.parent.children.findIndex(function (n) { return n.key === node.key; });
             node.parent.children.splice(idx, 1);
         }
     };

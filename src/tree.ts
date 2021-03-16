@@ -12,11 +12,16 @@ export class Tree {
     }
 
     public searchChildren(node: Node, key: any): Node | null {
+        if (node.children == null) {
+            return null;
+        }
+
         for (const child of node.children) {
             if (child.key === key) {
                 return child;
             }
         }
+        
         return null;
     }
 
@@ -32,7 +37,7 @@ export class Tree {
 
     public remove(node: Node): void {
         if (node.parent) {
-            const idx = node.parent.children.findIndex(n => n === node);
+            const idx = node.parent.children.findIndex(n => n.key === node.key);
             node.parent.children.splice(idx, 1);
         }
     }
