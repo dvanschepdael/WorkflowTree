@@ -1,6 +1,6 @@
 {
   "name": "workflowtree",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Workflow tree",
   "main": "dist/index.js",
   "files": [
