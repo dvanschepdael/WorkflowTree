@@ -1,13 +1,13 @@
 # WorkflowTree
 
-Browse a decision tree as a step-by-step workflow.
+Browse a decision tree as a step-by-step workflow
 
 Usage
 -----
 
-Simple usage with a linear tree:
+Simple usage with a forms workflow with linear steps:
 
-- Create values. This is stored in the tree node and used to distinct nodes. Value can be anything.
+- Create keys
 <pre>
 <code>
 export enum Step {    
@@ -18,12 +18,12 @@ export enum Step {
 </code>
 </pre>
 
-- Create steps with a next() function.
+- Create steps with a key and a step() function
 <pre>
 <code>
 const stepA = {
-    value: Step.FormA,
-    step: () => {
+    key: Step.FormA,
+    step: (formA: FormA) => {
         //Check the form and determine the next step
         return Step.FormB;
     }
@@ -31,8 +31,8 @@ const stepA = {
 </code>
 <code>
 const stepB = {
-    value: Step.FormB,
-    step: () => {
+    key: Step.FormB,
+    step: (formB: FormB) => {
         //Check the form and determine the next step
         return Step.FormC;
     }
@@ -40,7 +40,7 @@ const stepB = {
 </code>
 <code>
 const stepC = {
-    value: Step.FormC,
+    key: Step.FormC,
     step: () => {
         //Finish the process
         return null;
@@ -49,10 +49,10 @@ const stepC = {
 </code>
 </pre>
 
-- Create the workflow with a tree and organize steps.
+- Create the workflow with a tree and organize steps
 <pre>
 <code>
-const tree = new Tree(stepA);   //Create tree and set the starting step
+const tree = new Tree(stepA);   //Create tree and set stepA as root
 tree.add(stepB, stepA);         //Add stepB as a child of stepA
 tree.add(stepC, stepB);         //Add stepC as a child of stepB
 </code>
@@ -65,11 +65,11 @@ const workflow = new Workflow(tree);
 <pre>
 <code>
 //First form
-const currentForm = workflow.currentNode().value;
+const currentKey = workflow.currentNode.key;
 </code>
 <code>
-//User fills fields and click to continue
-const currentForm = workflow.next().value;
+//Wait user fills fields and click to continue
+currentKey = workflow.next(currentForm).key;
 </code>
 </pre>
 

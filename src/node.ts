@@ -1,7 +1,7 @@
 import { StepFunction } from "./types";
 
 export interface Node {
-    value: any;
+    key: any;
     step: StepFunction;
     parent: Node;
     children: Array<Node>;

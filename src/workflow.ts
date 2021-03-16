@@ -9,7 +9,7 @@ export class Workflow {
     public constructor(tree: Tree) {
         this._tree = tree;
         this._currentNode = this._tree.root;
-        this._stack = [this._currentNode.value];
+        this._stack = [this._currentNode.key];
     }
 
     public get currentNode(): Node | null {
@@ -30,14 +30,14 @@ export class Workflow {
         }
     }
 
-    public next(args?: any): Node | null {
+    public next(param?: any): Node | null {
         if (this._currentNode != null && this._currentNode.children != null) {
-            const nextValue = this._currentNode.step(args);
-            const node = this._tree.searchChildren(this._currentNode, nextValue);
+            const nextKey = this._currentNode.step(param);
+            const node = this._tree.searchChildren(this._currentNode, nextKey);
 
             if (node != null) {
                 this._currentNode = node;
-                this._stack.push(nextValue);
+                this._stack.push(nextKey);
             }
 
             return node;

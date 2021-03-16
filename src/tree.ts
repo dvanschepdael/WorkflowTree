@@ -11,9 +11,9 @@ export class Tree {
         return this._root;
     }
 
-    public searchChildren(node: Node, value: any): Node | null {
+    public searchChildren(node: Node, key: any): Node | null {
         for (const child of node.children) {
-            if (child.value === value) {
+            if (child.key === key) {
                 return child;
             }
         }
