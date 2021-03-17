@@ -80,9 +80,9 @@ currentKey = workflow.next(currentForm).key;
 </code>
 </pre>
 
-- List steps stack
+- List the history of the steps
 <pre>
 <code>
-const steps = workflow.stack;
+const history = workflow.stack;
 </code>
 </pre>
