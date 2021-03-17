@@ -2,8 +2,15 @@
 
 Browse a decision tree as a step-by-step workflow
 
-Usage
------
+# Installation
+<pre>
+<code>
+npm i workflowtree
+</code>
+</pre>
+
+
+# Usage
 
 Simple usage with a forms workflow with linear steps:
 

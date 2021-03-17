@@ -1,6 +1,6 @@
 {
   "name": "workflowtree",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Workflow tree",
   "main": "dist/index.js",
   "files": [
@@ -17,8 +17,9 @@
     "workflow",
     "tree"
   ],
-  "author": "David Vanschepdael",
-  "license": "ISC",
+  "author": "David Vanschepdael <david.vanschepdael@outlook.com>",
+  "license": "MIT",
+  "private": false,
   "bugs": {
     "url": "https://github.com/dvanschepdael/WorkflowTree/issues"
   },
