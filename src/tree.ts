@@ -23,10 +23,14 @@ export class Tree {
         if (node.key == key) {
             return node;
         }
+
+        if (node.children == null) {
+            return null;
+        }
         
         for (let child of node.children) {
             const rs = this.searchNode(child, key);
-            if (rs != null) {
+            if (!!rs) {
                 return rs;
             }
         }

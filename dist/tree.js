@@ -22,10 +22,13 @@ var Tree = /** @class */ (function () {
         if (node.key == key) {
             return node;
         }
+        if (node.children == null) {
+            return null;
+        }
         for (var _i = 0, _a = node.children; _i < _a.length; _i++) {
             var child = _a[_i];
             var rs = this.searchNode(child, key);
-            if (rs != null) {
+            if (!!rs) {
                 return rs;
             }
         }
