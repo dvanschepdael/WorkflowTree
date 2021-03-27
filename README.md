@@ -30,7 +30,7 @@ export enum Step {
 <code>
 const stepA = {
     key: Step.FormA,
-    step: (formA: FormA) => {
+    next: (formA: FormA) => {
         //Check the form and determine the next step
         return Step.FormB;
     }
@@ -39,7 +39,8 @@ const stepA = {
 <code>
 const stepB = {
     key: Step.FormB,
-    step: (formB: FormB) => {
+    parentKey: Step.FormA,
+    next: (formB: FormB) => {
         //Check the form and determine the next step
         return Step.FormC;
     }
@@ -48,7 +49,8 @@ const stepB = {
 <code>
 const stepC = {
     key: Step.FormC,
-    step: () => {
+    parentKey: Step.FormB,
+    next: () => {
         //Finish the process
         return null;
     }
@@ -60,8 +62,7 @@ const stepC = {
 <pre>
 <code>
 const tree = new Tree(stepA);   //Create tree and set stepA as root
-tree.add(stepB, stepA);         //Add stepB as a child of stepA
-tree.add(stepC, stepB);         //Add stepC as a child of stepB
+tree.add(stepB, stepC);         //Add other steps
 </code>
 <code>
 const workflow = new Workflow(tree);
@@ -80,7 +81,7 @@ currentKey = workflow.next(currentForm).key;
 </code>
 </pre>
 
-- List the history of the steps
+- list of step history
 <pre>
 <code>
 const history = workflow.stack;

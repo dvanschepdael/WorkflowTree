@@ -1,8 +1,9 @@
-import { StepFunction } from "./types";
+import { NextFunction } from "./types";
 
 export interface Node {
     key: any;
-    step: StepFunction;
+    parentKey: any;
+    next: NextFunction;
     parent: Node;
     children: Array<Node>;
 }

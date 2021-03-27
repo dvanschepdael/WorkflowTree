@@ -11,32 +11,48 @@ export class Tree {
         return this._root;
     }
 
-    public searchChildren(node: Node, key: any): Node | null {
-        if (node.children == null) {
+    public search(key: any): Node | null {
+        return this.searchNode(this._root, key);
+    }
+
+    public searchNode(node: Node, key: any): Node | null {
+        if (node == null) {
             return null;
         }
 
-        for (const child of node.children) {
-            if (child.key === key) {
-                return child;
-            }
+        if (node.key == key) {
+            return node;
         }
         
+        for (let child of node.children) {
+            const rs = this.searchNode(child, key);
+            if (rs != null) {
+                return rs;
+            }
+        }
+
         return null;
     }
 
-    public add(node: Node, parent: Node): void {
-        node.parent = parent;
-
-        if (parent.children == null) {
-            parent.children = new Array<Node>();
+    public add(...nodes: Array<Node>): void {
+        for(let node of nodes) {
+            const parent = this.search(node.parentKey);
+            if (!!parent) {
+                node.parent = parent;
+                if (parent.children == null) {
+                    parent.children = new Array<Node>();
+                }
+                parent.children.push(node);
+            }
         }
-
-        parent.children.push(node);
     }
 
     public remove(node: Node): void {
-        if (node.parent) {
+        for (let child of node.children) {
+            child.parent = node.parent;
+        }
+
+        if (!!node.parent) {
             const idx = node.parent.children.findIndex(n => n.key === node.key);
             node.parent.children.splice(idx, 1);
         }

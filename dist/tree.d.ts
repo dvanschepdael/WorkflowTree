@@ -3,7 +3,8 @@ export declare class Tree {
     private _root;
     constructor(root: Node);
     get root(): Node;
-    searchChildren(node: Node, key: any): Node | null;
-    add(node: Node, parent: Node): void;
+    search(key: any): Node | null;
+    searchNode(node: Node, key: any): Node | null;
+    add(...nodes: Array<Node>): void;
     remove(node: Node): void;
 }

@@ -21,28 +21,29 @@ export class Workflow {
     }
 
     public previous(): Node | null {
-        if (this._currentNode != null && this._currentNode.parent != null) {
-            this._currentNode = this._currentNode.parent;
-            this._stack.pop();
-            return this._currentNode;
-        } else {
+        if (this._currentNode == null || this._currentNode.parent == null) {
             return null;
         }
+
+        this._currentNode = this._currentNode.parent;
+        this._stack.pop();
+        
+        return this._currentNode;
     }
 
     public next(param?: any): Node | null {
-        if (this._currentNode != null && this._currentNode.children != null) {
-            const nextKey = this._currentNode.step(param);
-            const node = this._tree.searchChildren(this._currentNode, nextKey);
-
-            if (node != null) {
-                this._currentNode = node;
-                this._stack.push(nextKey);
-            }
-
-            return node;
-        } else {
+        if (this._currentNode == null || this._currentNode.children == null) {
             return null;
         }
+
+        const nextKey = this._currentNode.next(param);
+        const node = this._tree.searchNode(this._currentNode, nextKey);
+
+        if (node != null) {
+            this._currentNode = node;
+            this._stack.push(nextKey);
+        }
+
+        return node;
     }
 }

@@ -22,28 +22,24 @@ var Workflow = /** @class */ (function () {
         configurable: true
     });
     Workflow.prototype.previous = function () {
-        if (this._currentNode != null && this._currentNode.parent != null) {
-            this._currentNode = this._currentNode.parent;
-            this._stack.pop();
-            return this._currentNode;
-        }
-        else {
+        if (this._currentNode == null || this._currentNode.parent == null) {
             return null;
         }
+        this._currentNode = this._currentNode.parent;
+        this._stack.pop();
+        return this._currentNode;
     };
     Workflow.prototype.next = function (param) {
-        if (this._currentNode != null && this._currentNode.children != null) {
-            var nextKey = this._currentNode.step(param);
-            var node = this._tree.searchChildren(this._currentNode, nextKey);
-            if (node != null) {
-                this._currentNode = node;
-                this._stack.push(nextKey);
-            }
-            return node;
-        }
-        else {
+        if (this._currentNode == null || this._currentNode.children == null) {
             return null;
         }
+        var nextKey = this._currentNode.next(param);
+        var node = this._tree.searchNode(this._currentNode, nextKey);
+        if (node != null) {
+            this._currentNode = node;
+            this._stack.push(nextKey);
+        }
+        return node;
     };
     return Workflow;
 }());
