@@ -62,7 +62,8 @@ const stepC = {
 <pre>
 <code>
 const tree = new Tree(stepA);   //Create tree and set stepA as root
-tree.add(stepB, stepC);         //Add other steps
+tree.add(stepA, stepB);         //Add step B
+tree.add(stepB, stepC);         //Add step C
 </code>
 <code>
 const workflow = new Workflow(tree);

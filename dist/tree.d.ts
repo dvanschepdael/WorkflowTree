@@ -5,6 +5,6 @@ export declare class Tree {
     get root(): Node;
     search(key: any): Node | null;
     searchNode(node: Node, key: any): Node | null;
-    add(...nodes: Array<Node>): void;
+    add(parent: Node, ...nodes: Array<Node>): void;
     remove(node: Node): void;
 }

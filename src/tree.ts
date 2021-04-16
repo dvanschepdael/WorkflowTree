@@ -38,16 +38,17 @@ export class Tree {
         return null;
     }
 
-    public add(...nodes: Array<Node>): void {
+    public add(parent: Node, ...nodes: Array<Node>): void {
+        if (!parent) {
+            return;
+        }
+
         for(let node of nodes) {
-            const parent = this.search(node.parentKey);
-            if (!!parent) {
-                node.parent = parent;
-                if (parent.children == null) {
-                    parent.children = new Array<Node>();
-                }
-                parent.children.push(node);
+            node.parent = parent;
+            if (parent.children == null) {
+                parent.children = new Array<Node>();
             }
+            parent.children.push(node);
         }
     }
 
